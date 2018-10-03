@@ -1,7 +1,7 @@
 apiVersion: apps/v1beta2
 kind: Deployment
 metadata:
-  name: proxy-server-green
+  name: proxy-server-blue
   namespace: default
   labels:
     name: proxy-server
@@ -18,7 +18,7 @@ spec:
         name: proxy-server
         type: frontend
         version: "1"
-        deploymentType: GREEN
+        deploymentType: BLUE
     spec:
       containers:
       - name: proxy-server
