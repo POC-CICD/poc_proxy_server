@@ -31,7 +31,7 @@ spec:
     spec:
       containers:
       - name: proxy-server
-        image: nisumpk/proxy_server
+        image: nisumpk/proxy_server:31180a8_3
         ports:
         - containerPort: 8080
         env:
