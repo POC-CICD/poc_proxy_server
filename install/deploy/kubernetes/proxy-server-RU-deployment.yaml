@@ -31,11 +31,18 @@ spec:
     spec:
       containers:
       - name: proxy-server
-        image: nisumpk/proxy_server:31180a8_3
+        image: nisumpk/proxy_server
+        #image: nisumpk/proxy_server:31180a8_3
+
         ports:
         - containerPort: 8080
         env:
-#
+        - name: MY_POD_IP
+                  valueFrom:
+                    fieldRef:
+                      fieldPath: status.podIP
+        #        - name: SERVER_ADDRESS
+        #          value: -Dserver.address=0.0.0.0"
         - name: SERVER_PORT
           value: -Dserver.port=8080
         - name: DISCOVERY_SERVER_URL
@@ -45,13 +52,13 @@ spec:
         readinessProbe:
           tcpSocket:
             port: 8080
-            host: 127.0.0.1
+           # host: 127.0.0.1
           initialDelaySeconds: 5
           periodSeconds: 10
         livenessProbe:
           tcpSocket:
             port: 8080
-            host: 127.0.0.1
+          #  host: 127.0.0.1
           initialDelaySeconds: 15
           periodSeconds: 20
 ---
