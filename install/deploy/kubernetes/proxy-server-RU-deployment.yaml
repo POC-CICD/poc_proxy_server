@@ -33,22 +33,20 @@ spec:
       - name: proxy-server
         image: nisumpk/proxy_server
         #image: nisumpk/proxy_server:31180a8_3
-
         ports:
         - containerPort: 8080
         env:
         - name: MY_POD_IP
-                  valueFrom:
-                    fieldRef:
-                      fieldPath: status.podIP
-        #        - name: SERVER_ADDRESS
-        #          value: -Dserver.address=0.0.0.0"
+          valueFrom:
+            fieldRef:
+              fieldPath: status.podIP
         - name: SERVER_PORT
           value: -Dserver.port=8080
         - name: DISCOVERY_SERVER_URL
-          value: "-Deureka.client.serviceUrl.defaultZone=http://discovery-server-service.ru-deployment.svc.cluster.local:7001/eureka/"
+          value: "-Deureka.client.serviceUrl.defaultZone=http://discovery-server-service:7001/eureka/"
         command: ["java"]
-        args: ["$(SERVER_PORT)", "-Dserver.address=$(MY_POD_IP)", "$(DISCOVERY_SERVER_URL)", "-Deureka.instance.preferIpAddress=true", "-Deureka.instance.ipAddress=$(MY_POD_IP)", "-jar", "/usr/src/proxy-server-SNAPSHOT.jar"]
+        args: ["$(SERVER_PORT)", "-Dserver.address=$(MY_POD_IP)", "$(DISCOVERY_SERVER_URL)", "-Deureka.instance.preferIpAddress=true", "-Deureka.instance.ipAddress=proxy-server-service", "-jar", "/usr/src/proxy-server-SNAPSHOT.jar"]
+
         readinessProbe:
           tcpSocket:
             port: 8080
