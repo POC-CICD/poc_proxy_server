@@ -40,7 +40,7 @@ pipeline {
 
     environment {
 
-            appName = 'proxyy-server'
+            appName = 'proxy-server'
             nameSpace = 'ru-deployment'
             /* Do not change below this line! */
             k8configPath = "${WORKSPACE}/install/deploy/kubernetes"
