@@ -22,7 +22,7 @@ spec:
     spec:
       containers:
       - name: proxy-server
-        image: nisumpk/proxy_server
+        image: poccicdsaad/proxy_server
         ports:
         - containerPort: 8080
         env:
