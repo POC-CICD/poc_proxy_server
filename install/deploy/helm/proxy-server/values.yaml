@@ -27,7 +27,7 @@ service:
   name: proxy-server-service
   namespace: helm
   type: LoadBalancer
-  oadBalancerIP: 216.218.200.251
+  loadBalancerIP: 104.197.139.214
   port: 80
   targetPort: 8080
   nodePort: 32756
