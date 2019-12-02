@@ -23,6 +23,7 @@ spec:
       containers:
       - name: proxy-server
         image: poccicdsaad/proxy_server
+        imagePullPolicy: Always
         ports:
         - containerPort: 8080
         env:
